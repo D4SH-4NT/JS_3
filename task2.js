@@ -20,7 +20,6 @@
             b) список строк, которые содержат заданное слово.
 */
 
-
 class SuperString {
     #value; // # - private
 
@@ -71,7 +70,7 @@ class SuperString {
         });
     }
 
-     // Вспомогательный метод проверки наличия слова (пункт б)
+    // Вспомогательный метод проверки наличия слова (пункт б)
     hasWord(word) {
         const regex = new RegExp(`\\b${word}\\b`, 'i');
         return regex.test(this.#value);
@@ -86,7 +85,6 @@ class SuperString {
         });
     }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +105,7 @@ str2.replaceChar('!', '.');
 console.log(`После замены '!' на '.':`, str2.value);
 
 ///////////////////////////////////////////////////////////////////////////////
+
 const stringsArray = [
     new SuperString("12 33 56 78 54543"),
     new SuperString("123 4567 89 89 93"),
@@ -121,7 +120,3 @@ SuperString.printByLength(stringsArray, 17);
 
 console.log("\n==== список строк, которые содержат заданное слово (33) ====");
 SuperString.printByWord(stringsArray, "33");
-
-
-
-
