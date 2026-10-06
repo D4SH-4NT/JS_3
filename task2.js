@@ -62,13 +62,31 @@ class SuperString {
         return this.#value;
     }
 
-    // Вспомогательный метод проверки наличия слова (пункт б)
+    // а. поиск строк заданной длины
+    static printByLength(arr, length) {
+        arr.filter(function(item) {
+            return item.getLength() === length;
+        }).forEach(function(item) {
+            console.log(item.value);
+        });
+    }
+
+     // Вспомогательный метод проверки наличия слова (пункт б)
     hasWord(word) {
-        // Ищем слово как отдельное совпадение, без учета регистра
         const regex = new RegExp(`\\b${word}\\b`, 'i');
         return regex.test(this.#value);
     }
+
+    // б. поиск строк с заданным словом
+    static printByWord(arr, word) {
+        arr.filter(function(item) {
+            return item.hasWord(word);
+        }).forEach(function(item) {
+            console.log(item.value);
+        });
+    }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -87,3 +105,23 @@ console.log(typeof str2);
 
 str2.replaceChar('!', '.');
 console.log(`После замены '!' на '.':`, str2.value);
+
+///////////////////////////////////////////////////////////////////////////////
+const stringsArray = [
+    new SuperString("12 33 56 78 54543"),
+    new SuperString("123 4567 89 89 93"),
+    new SuperString("1111"),
+    new SuperString("244 33 334"),
+    new SuperString("454 354 35"),
+    new SuperString("45 433 435 99 444"),
+];
+
+console.log("\n==== список строк определенной длины (17) ====");
+SuperString.printByLength(stringsArray, 17);
+
+console.log("\n==== список строк, которые содержат заданное слово (33) ====");
+SuperString.printByWord(stringsArray, "33");
+
+
+
+
