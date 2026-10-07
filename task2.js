@@ -63,11 +63,8 @@ class SuperString {
 
     // а. поиск строк заданной длины
     static printByLength(arr, length) {
-        arr.filter(function(item) {
-            return item.getLength() === length;
-        }).forEach(function(item) {
-            console.log(item.value);
-        });
+        arr.filter(item => item.getLength() === length)
+           .forEach(item => console.log(item.value));
     }
 
     // Вспомогательный метод проверки наличия слова (пункт б)
@@ -78,11 +75,8 @@ class SuperString {
 
     // б. поиск строк с заданным словом
     static printByWord(arr, word) {
-        arr.filter(function(item) {
-            return item.hasWord(word);
-        }).forEach(function(item) {
-            console.log(item.value);
-        });
+        arr.filter(item => item.hasWord(word))
+           .forEach(item => console.log(item.value));
     }
 }
 
