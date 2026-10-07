@@ -1,3 +1,14 @@
+/*
+    1. Определить иерархию и композицию классов (в соответствии с вариантом), реализовать классы. 
+        Если необходимо расширьте по своему усмотрению иерархию.
+    2. Каждый класс должен иметь отражающее смысл название и информативный состав. 
+        При кодировании должны быть использованы соглашения об оформлении кода code convention.
+    3. Написать демонстрационную программу, в которой создаются объекты различных классов.
+
+    Вариант 5
+        Телевизионная программа, Фильм, Новости, Худ. фильм, Мультфильм, Реклама, Режиссер.
+*/
+
 // Класс Режиссер (используется для композиции)
 class Director {
     #name;
@@ -29,8 +40,16 @@ class TvProgram {
     get title() { return this.#title; }
     get duration() { return this.#duration; }
 
+    getCommonInfo() {
+        return `"${this.#title}" | Длительность: ${this.#duration} мин.`;
+    }
+
+    get type() {
+        return "Программа";
+    }
+
     showInfo() {
-        return `[Программа] "${this.#title}" | Длительность: ${this.#duration} мин.`;
+        return `[${this.type}] ${this.getCommonInfo()}`;
     }
 }
 
@@ -45,8 +64,10 @@ class News extends TvProgram {
 
     get anchor() { return this.#anchor; }
 
+    get type() { return "Новости"; }
+
     showInfo() {
-        return `${super.showInfo()} | Категория: Новости | Ведущий: ${this.#anchor}`;
+        return `${super.showInfo()} | Ведущий: ${this.#anchor}`;
     }
 }
 
@@ -61,8 +82,10 @@ class Commercial extends TvProgram {
 
     get brand() { return this.#brand; }
 
+    get type() { return "Реклама"; }
+
     showInfo() {
-        return `${super.showInfo()} | Категория: Реклама | Бренд: ${this.#brand}`;
+        return `${super.showInfo()} | Бренд: ${this.#brand}`;
     }
 }
 
@@ -83,6 +106,8 @@ class Movie extends TvProgram {
     get director() { return this.#director; }
     get genre() { return this.#genre; }
 
+    get type() { return "Фильм"; }
+
     showInfo() {
         return `${super.showInfo()} | Жанр: ${this.#genre} | ${this.#director.getDetails()}`;
     }
@@ -99,14 +124,16 @@ class FeatureFilm extends Movie {
 
     get budget() { return this.#budget; }
 
+    get type() { return "Худ. фильм"; }
+
     showInfo() {
-        return `[Худ. фильм] ${super.showInfo()} | Бюджет: $${this.#budget.toLocaleString()}`;
+        return `${super.showInfo()} | Бюджет: $${this.#budget.toLocaleString()}`;
     }
 }
 
 // Подкласс: Мультфильм
 class Cartoon extends Movie {
-    #animationTechnique; // Например: 2D, 3D, Пластилиновый
+    #animationTechnique;
 
     constructor(title, duration, director, genre, animationTechnique) {
         super(title, duration, director, genre);
@@ -115,12 +142,14 @@ class Cartoon extends Movie {
 
     get animationTechnique() { return this.#animationTechnique; }
 
+    get type() { return "Мультфильм"; }
+
     showInfo() {
-        return `[Мультфильм] ${super.showInfo()} | Анимация: ${this.#animationTechnique}`;
+        return `${super.showInfo()} | Анимация: ${this.#animationTechnique}`;
     }
 }
 
-// ==================== Демонстрационная программа ====================
+///////////////////////////////////////////////////////////////////////////////
 
 // Создание объектов режиссеров (Композиция)
 const directorNolan = new Director("Кристофер Нолан", 25);
@@ -128,14 +157,14 @@ const directorMiyazaki = new Director("Хайао Миядзаки", 50);
 
 // Создание эфирной сетки телеканала из различных программ
 const tvSchedule = [
-    new News("Утреннее вещание", 20, "Екатерина Андреева"),
-    new Commercial("Рекламный блок", 3, "Coca-Cola"),
-    new FeatureFilm("Начало", 148, directorNolan, "Научная фантастика", 160000000),
-    new Cartoon("Унесенные призраками", 125, directorMiyazaki, "Аниме / Сказка", "2D Анимация"),
-    new News("Вечерний выпуск", 30, "Алексей Пивоваров")
+    new News("Новости Беларуси", 20, "Евгений Пустовой"),
+    new Commercial("Рекламный блок", 3, "Лидский квас"),
+    new FeatureFilm("Одиссея", 172, directorNolan, "Эпическая фантастика", 250000000),
+    new Cartoon("Унесенные призраками", 124, directorMiyazaki, "Аниме / Сказка", "2D Анимация"),
+    new News("Панорама", 30, "Игорь Тур")
 ];
 
-console.log("=== ПРОГРАММА ПЕРЕДАЧ НА СЕГОДНЯ ===\n");
+console.log("\n==== ПРОГРАММА ПЕРЕДАЧ НА СЕГОДНЯ ====");
 tvSchedule.forEach((program, index) => {
     console.log(`${index + 1}. ${program.showInfo()}`);
 });
