@@ -39,13 +39,10 @@ class TvProgram {
 
     get title() { return this.#title; }
     get duration() { return this.#duration; }
+    get type() { return "Программа"; }
 
     getCommonInfo() {
         return `"${this.#title}" | Длительность: ${this.#duration} мин.`;
-    }
-
-    get type() {
-        return "Программа";
     }
 
     showInfo() {
@@ -63,11 +60,10 @@ class News extends TvProgram {
     }
 
     get anchor() { return this.#anchor; }
-
     get type() { return "Новости"; }
 
-    showInfo() {
-        return `${super.showInfo()} | Ведущий: ${this.#anchor}`;
+    showInfo() { 
+        return `${super.showInfo()} | Ведущий: ${this.#anchor}`; 
     }
 }
 
@@ -81,10 +77,9 @@ class Commercial extends TvProgram {
     }
 
     get brand() { return this.#brand; }
-
     get type() { return "Реклама"; }
 
-    showInfo() {
+    showInfo() { 
         return `${super.showInfo()} | Бренд: ${this.#brand}`;
     }
 }
@@ -105,11 +100,10 @@ class Movie extends TvProgram {
 
     get director() { return this.#director; }
     get genre() { return this.#genre; }
-
     get type() { return "Фильм"; }
 
-    showInfo() {
-        return `${super.showInfo()} | Жанр: ${this.#genre} | ${this.#director.getDetails()}`;
+    showInfo() { 
+        return `${super.showInfo()} | Жанр: ${this.#genre} | ${this.#director.getDetails()}`; 
     }
 }
 
@@ -123,7 +117,6 @@ class FeatureFilm extends Movie {
     }
 
     get budget() { return this.#budget; }
-
     get type() { return "Худ. фильм"; }
 
     showInfo() {
@@ -141,7 +134,6 @@ class Cartoon extends Movie {
     }
 
     get animationTechnique() { return this.#animationTechnique; }
-
     get type() { return "Мультфильм"; }
 
     showInfo() {
