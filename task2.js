@@ -58,11 +58,14 @@ class SuperString {
             throw new Error("Аргументы должны быть одиночными символами");
         }
         this.#value = this.#value.split(oldChar).join(newChar);
+        // this.#value = this.#value.replace(oldChar, newChar);
         return this.#value;
     }
 
-    static compareObj = (obj1, obj2) => obj1.value === obj2.value;
-    
+    static compareObj(obj1, obj2) {
+        return obj1.value === obj2.value;
+    }
+
     // а. поиск строк заданной длины
     static printByLength(arr, length) {
         arr.filter(item => item.getLength() === length)
@@ -94,8 +97,8 @@ console.log(`Длина "${str1.value}":`, str1.getLength());
 console.log(`Есть ли символ '!' в "${str1.value}":`, str1.hasChar('!'));
 console.log(`Есть ли символ '!' в "${str2.value}":`, str2.hasChar('!'));
 
-console.log(`Сторока "${str1.value}" === "${str2.value}":`,SuperString.compareObj(str1, str2));
-console.log(`Сторока "${str2.value}" === "${str3.value}":`,SuperString.compareObj(str2, str3));
+console.log(`"${str1.value}" === "${str2.value}":`,SuperString.compareObj(str1, str2));
+console.log(`"${str2.value}" === "${str3.value}":`,SuperString.compareObj(str2, str3));
 
 console.log(typeof str1);
 console.log(typeof str2);
