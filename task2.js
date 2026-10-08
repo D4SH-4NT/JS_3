@@ -61,6 +61,8 @@ class SuperString {
         return this.#value;
     }
 
+    static compareObj = (obj1, obj2) => obj1.value === obj2.value;
+    
     // а. поиск строк заданной длины
     static printByLength(arr, length) {
         arr.filter(item => item.getLength() === length)
@@ -84,6 +86,7 @@ class SuperString {
 
 const str1 = new SuperString("abcdefghg");
 const str2 = new SuperString("JavaScript!");
+const str3 = new SuperString("JavaScript!");
 
 console.log(SuperString.getInfo());
 
@@ -91,7 +94,9 @@ console.log(`Длина "${str1.value}":`, str1.getLength());
 console.log(`Есть ли символ '!' в "${str1.value}":`, str1.hasChar('!'));
 console.log(`Есть ли символ '!' в "${str2.value}":`, str2.hasChar('!'));
 
-console.log(`Сторока ${str1.value} === ${str2.value} :`,str1 === str2);
+console.log(`Сторока "${str1.value}" === "${str2.value}":`,SuperString.compareObj(str1, str2));
+console.log(`Сторока "${str2.value}" === "${str3.value}":`,SuperString.compareObj(str2, str3));
+
 console.log(typeof str1);
 console.log(typeof str2);
 
